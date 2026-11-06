@@ -1,188 +1,495 @@
+
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail, MessageCircle, Instagram, Linkedin, Twitter, MapPin, Globe, ArrowUpRight, Navigation, Crown,Clock } from 'lucide-react';
+import {
+  Phone,
+  MapPin,
+  MessageCircle,
+  Music2,
+  Sparkles,
+  ArrowUpRight,
+  Volume2,
+  Lightbulb,
+  MonitorPlay,
+  PartyPopper,
+  CheckCircle2
+} from 'lucide-react';
 
-const ContactCard = ({ title, value, link, icon: Icon }) => (
-  <motion.a
-    href={link}
-    target="_blank"
-    rel="noreferrer"
-    whileHover={{ y: -8 }}
-    className="bg-white border border-slate-100 p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-all duration-500 group relative overflow-hidden"
-  >
-    {/* Decorative Background Element */}
-    <div className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 bg-slate-50 rounded-bl-[2.5rem] md:rounded-bl-[3rem] -z-10 group-hover:bg-amber-50 transition-colors" />
-
-    <div className="p-3 md:p-4 bg-slate-900 text-[#D4AF37] rounded-xl md:rounded-2xl group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-500 shadow-lg shrink-0">
-      <Icon size={20} className="md:w-6 md:h-6" strokeWidth={1.5} />
-    </div>
-
-    <div className="text-left overflow-hidden">
-      <p className="text-slate-400 group-hover:text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold mb-1 transition-colors">
-        {title}
-      </p>
-      <p className="text-slate-900 font-bold text-xs md:text-sm tracking-tight truncate">
-        {value}
-      </p>
-    </div>
-    <ArrowUpRight className="ml-auto text-slate-300 group-hover:text-[#D4AF37] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all shrink-0" size={16} />
-  </motion.a>
-);
+import { generateWhatsAppLink } from '../data/websiteData';
 
 const Contact = () => {
-  const contacts = [
-    { title: "Direct Line", value: "+91 88787 40101", link: "tel:+918878740101", icon: Phone },
-    { title: "Global Inquiries", value: "info@skprimegroup.com", link: "mailto:info@skprimegroup.com", icon: Mail },
-    { title: "WhatsApp", value: "+91 88787 40101", link: "https://wa.me/918878740101", icon: MessageCircle },
-    { title: "Instagram", value: "@skprimegroup", link: "https://www.instagram.com/skprimegroup/", icon: Instagram },
-    { title: "LinkedIn", value: "SK Prime Group", link: "https://www.linkedin.com/company/sk-prime-group-private-limited", icon: Linkedin },
-    { title: "Twitter / X", value: "@skprimegroup", link: "https://x.com/skprimegroup", icon: Twitter },
+
+  const services = [
+    { icon: Volume2, name: 'Professional Sound Systems' },
+    { icon: Lightbulb, name: 'DJ & Stage Lighting' },
+    { icon: MonitorPlay, name: 'LED Walls & Screens' },
+    { icon: PartyPopper, name: 'Complete Event Management' }
   ];
 
   return (
-    <section id="contact" className="min-h-screen pt-24 md:pt-40 pb-16 px-4 md:px-6 relative overflow-hidden selection:bg-[#D4AF37] selection:text-white font-sans bg-[#fcfcfd]">
+    <section
+      id="contact"
+      className="relative py-24 lg:py-32 bg-[#090B13]
+      text-white overflow-hidden"
+    >
 
-      {/* --- AMBIENT BACKGROUND --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-[-10%] w-[60%] h-[60%] bg-blue-50/50 blur-[80px] md:blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] bg-amber-50/40 blur-[80px] md:blur-[120px] rounded-full" />
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+
+        <div className="absolute top-0 left-0 w-96 h-96
+          bg-amber-500/10 blur-[130px] rounded-full" />
+
+        <div className="absolute bottom-0 right-0 w-96 h-96
+          bg-purple-600/10 blur-[130px] rounded-full" />
+
+        <div className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="relative z-10 max-w-7xl mx-auto
+        px-5 sm:px-8 lg:px-10">
 
-        {/* --- SECTION HEADER --- */}
-        <div className="text-center mb-10 md:mb-20 lg:mb-32 px-4 w-full">
-          {/* Floating Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 rounded-full border border-slate-200 bg-white/80 backdrop-blur-md mb-6 md:mb-8 shadow-sm"
-          >
-            <Crown size={14} className="text-[#D4AF37] shrink-0" />
-            <span className="text-[7px] md:text-[9px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-slate-500 whitespace-nowrap">
-              Global Connectivity Center
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+
+          <span className="inline-flex items-center gap-2
+            px-4 py-2 rounded-full
+            bg-amber-400/10 border border-amber-400/25
+            text-amber-300 text-xs font-bold
+            uppercase tracking-[2px] mb-5">
+
+            <Sparkles className="w-4 h-4" />
+            Get In Touch
+
+          </span>
+
+          <h2 className="text-3xl sm:text-5xl
+            font-black uppercase leading-tight">
+
+            Let's Make Your Next Event
+
+            <span className="block mt-2 bg-gradient-to-r
+              from-amber-200 via-yellow-400 to-amber-500
+              bg-clip-text text-transparent">
+
+              Truly Unforgettable.
+
             </span>
-          </motion.div>
 
-          {/* Main Title - Responsive Sizing */}
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-[12vw] sm:text-6xl md:text-7xl lg:text-[8.5rem] font-black uppercase tracking-tighter mb-6 md:mb-8 leading-[1] md:leading-[0.85] text-slate-900"
-          >
-            <span className="block">INITIATE</span>
-            {/* Tablet/Desktop line break hidden on small mobile if needed, but 'block' handles it best */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8A6E2F] via-[#D4AF37] to-[#8A6E2F] italic font-serif font-light block mt-1 md:mt-2">
-              COMMUNICATION.
+          </h2>
+
+          <p className="text-slate-400 text-sm sm:text-base
+            leading-7 mt-5">
+
+            From weddings and celebrations to concerts
+            and corporate events, we bring the perfect
+            combination of sound, lighting and event
+            management to your special occasion.
+
+          </p>
+
+        </div>
+
+        {/* Main Contact Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2
+          gap-10 lg:gap-16 items-center">
+
+          {/* LEFT SIDE */}
+          <div>
+
+            <span className="text-xs font-bold
+              uppercase tracking-[3px] text-amber-400">
+
+              Connect With Us
+
             </span>
-          </motion.h2>
 
-          {/* Description */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-2xl mx-auto"
-          >
-            <p className="text-sm md:text-xl lg:text-2xl text-slate-500 font-light leading-relaxed italic px-2 md:px-6">
-              <span className="text-slate-900 font-medium md:block mb-1">Your vision deserves a legacy.</span>
-              Connect with our central command for strategic <br className="hidden md:block" /> global partnerships.
+            <h3 className="text-3xl sm:text-4xl
+              font-black uppercase leading-tight mt-4 mb-6">
+
+              Your Event.
+              <span className="block text-amber-400">
+                Our Passion.
+              </span>
+
+            </h3>
+
+            <p className="text-slate-400 text-sm
+              leading-7 mb-9">
+
+              Looking for professional sound systems,
+              stunning stage lighting, LED screens or
+              complete event arrangements?
+
+              Get in touch with Lucky Shriwas and let's
+              make your event extraordinary.
+
             </p>
-          </motion.div>
-        </div>
 
-        {/* --- CONTACT GRID --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-20 md:mb-40">
-          {contacts.map((c, i) => (
-            <ContactCard key={i} {...c} />
-          ))}
-        </div>
-        <section className="py-12 md:py-24 px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-7xl mx-auto bg-white rounded-[2.5rem] md:rounded-[4rem] overflow-hidden border border-slate-100 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Contact Details */}
+            <div className="space-y-4">
 
-              {/* Left Side: Content & Details */}
-              <div className="p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
-                {/* Subtle Grid Background */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                  style={{ backgroundImage: `radial-gradient(#000 1px, transparent 1px)`, backgroundSize: '30px 30px' }}></div>
+              {/* Phone */}
+              <a
+                href="tel:+917000389061"
+                className="group flex items-center gap-4
+                p-5 rounded-2xl bg-[#151823]
+                border border-white/10
+                hover:border-amber-400/50
+                transition-all duration-300"
+              >
 
-                <div className="relative z-10">
-                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center mb-8 group hover:bg-slate-900 transition-all duration-500 shadow-sm">
-                    <MapPin className="text-slate-900 group-hover:text-[#D4AF37]" size={24} />
-                  </div>
+                <div className="w-14 h-14 rounded-xl
+                  bg-amber-400/10 border
+                  border-amber-400/20
+                  flex items-center justify-center
+                  shrink-0 group-hover:bg-amber-400
+                  transition-all">
 
-                  <h3 className="text-[#D4AF37] font-black uppercase tracking-[0.4em] text-[10px] mb-4">Corporate Headquarters</h3>
+                  <Phone className="w-6 h-6
+                    text-amber-400
+                    group-hover:text-black" />
 
-                  <h4 className="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter leading-none text-slate-900">
-                    INDORE <span className="italic font-serif font-light text-slate-300 text-3xl md:text-5xl">HUB</span>
+                </div>
+
+                <div className="flex-1">
+
+                  <p className="text-[10px] font-bold
+                    uppercase tracking-[2px]
+                    text-slate-500">
+
+                    Call Us Directly
+
+                  </p>
+
+                  <h4 className="text-lg font-bold
+                    text-white mt-1">
+
+                    +91 7000389061
+
                   </h4>
 
-                  <div className="space-y-6 mb-10">
-                    <p className="text-slate-600 text-lg md:text-xl font-light leading-snug italic">
-                      Shop No. G1, SR Empire, <br />
-                      <span className="text-slate-900 font-black not-italic">Silver Star City, Rau, Indore</span>
-                    </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Contact Lucky Shriwas
+                  </p>
 
-                    {/* Status / Hours Badge */}
-                    <div className="flex items-center gap-3 text-slate-500 text-xs font-bold uppercase tracking-widest">
-                      <Clock size={14} className="text-[#D4AF37]" />
-                      <span>Mon - Fri: 10:30 AM - 07:00 PM</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="https://www.google.com/maps/place/SK+Prime+Group+Private+Limited/@22.6433865,75.8387294,17z/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-slate-900 text-white px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-[#D4AF37] transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
-                    >
-                      <Navigation size={16} /> Get Directions
-                    </a>
-                    <a
-                      href="https://skprimegroup.com/"
-                      className="group border border-slate-200 text-slate-900 px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-3"
-                    >
-                      <Globe size={16} className="group-hover:rotate-12 transition-transform" /> Website
-                    </a>
-                  </div>
                 </div>
+
+                <ArrowUpRight className="w-5 h-5
+                  text-slate-500
+                  group-hover:text-amber-400" />
+
+              </a>
+
+              {/* Location */}
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Indore+Madhya+Pradesh"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-4
+                p-5 rounded-2xl bg-[#151823]
+                border border-white/10
+                hover:border-amber-400/50
+                transition-all duration-300"
+              >
+
+                <div className="w-14 h-14 rounded-xl
+                  bg-amber-400/10 border
+                  border-amber-400/20
+                  flex items-center justify-center
+                  shrink-0 group-hover:bg-amber-400
+                  transition-all">
+
+                  <MapPin className="w-6 h-6
+                    text-amber-400
+                    group-hover:text-black" />
+
+                </div>
+
+                <div className="flex-1">
+
+                  <p className="text-[10px] font-bold
+                    uppercase tracking-[2px]
+                    text-slate-500">
+
+                    Our Location
+
+                  </p>
+
+                  <h4 className="text-lg font-bold
+                    text-white mt-1">
+
+                    Indore, Madhya Pradesh
+
+                  </h4>
+
+                  <p className="text-xs text-slate-400 mt-1">
+                    Event Services & Management
+                  </p>
+
+                </div>
+
+                <ArrowUpRight className="w-5 h-5
+                  text-slate-500
+                  group-hover:text-amber-400" />
+
+              </a>
+
+            </div>
+
+            {/* WhatsApp CTA */}
+            <div className="mt-6 p-6 rounded-2xl
+              bg-gradient-to-br from-[#10291F]
+              to-[#151823] border border-emerald-500/30">
+
+              <div className="flex items-center gap-3 mb-3">
+
+                <MessageCircle className="w-6 h-6
+                  text-emerald-400" />
+
+                <h4 className="font-bold text-emerald-300
+                  uppercase text-sm">
+
+                  Let's Talk On WhatsApp
+
+                </h4>
+
               </div>
 
-              {/* Right Side: Interactive Map */}
-              <div className="h-[400px] lg:h-auto min-h-[400px] relative grayscale-[20%] hover:grayscale-0 transition-all duration-700">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.65884949141!2d75.8361544759654!3d22.64338649449838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fb0f11556ead%3A0xbf410c7ca4a4529b!2sSK%20Prime%20Group%20Private%20Limited!5e0!3m2!1sen!2sin!4v1709000000000!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="SK Prime Group Office Location"
-                  className="absolute inset-0"
-                ></iframe>
+              <p className="text-xs text-slate-300
+                leading-6 mb-5">
+
+                Have an event coming up? Connect with
+                us directly to discuss your requirements
+                and event arrangements.
+
+              </p>
+
+              <a
+                href={generateWhatsAppLink(
+                  "Hi Lucky Shriwas! I am interested in Shree Ganesh Sound & Light services. I would like to discuss my upcoming event."
+                )}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full inline-flex items-center
+                justify-center gap-2 py-4 rounded-xl
+                bg-emerald-600 hover:bg-emerald-500
+                text-white font-extrabold text-xs
+                uppercase tracking-wider transition-all"
+              >
+
+                <MessageCircle className="w-5 h-5" />
+
+                Chat On WhatsApp
+
+                <ArrowUpRight className="w-4 h-4" />
+
+              </a>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="relative">
+
+            <div className="absolute inset-10
+              bg-amber-400/15 blur-[100px]
+              rounded-full" />
+
+            <div className="relative rounded-3xl
+              overflow-hidden bg-gradient-to-br
+              from-[#20202A] via-[#141722]
+              to-[#090B13] border border-amber-400/25
+              p-7 sm:p-10 shadow-2xl">
+
+              {/* Brand Visual */}
+              <div className="text-center">
+
+                <div className="inline-flex items-center
+                  justify-center w-16 h-16 rounded-2xl
+                  bg-amber-400/10 border
+                  border-amber-400/25 mb-5">
+
+                  <Music2 className="w-8 h-8
+                    text-amber-400" />
+
+                </div>
+
+                <p className="text-xs font-bold
+                  uppercase tracking-[3px]
+                  text-amber-400">
+
+                  Shree Ganesh Presents
+
+                </p>
+
+                <h3 className="text-3xl sm:text-4xl
+                  font-black uppercase mt-4">
+
+                  Sound & Light
+
+                </h3>
+
+                <p className="text-sm text-slate-400
+                  mt-3 leading-6">
+
+                  Complete Event Production
+                  & Management Solutions
+
+                </p>
+
+              </div>
+
+              <div className="h-px my-8 bg-gradient-to-r
+                from-transparent via-amber-400/50
+                to-transparent" />
+
+              {/* Services */}
+              <h4 className="text-sm font-bold
+                uppercase tracking-[2px]
+                text-white mb-6">
+
+                What We Offer
+
+              </h4>
+
+              <div className="space-y-5">
+
+                {services.map((service, index) => {
+
+                  const Icon = service.icon;
+
+                  return (
+
+                    <div key={index}
+                      className="flex items-center gap-4">
+
+                      <div className="w-11 h-11
+                        rounded-xl bg-amber-400/10
+                        border border-amber-400/20
+                        flex items-center justify-center">
+
+                        <Icon className="w-5 h-5
+                          text-amber-400" />
+
+                      </div>
+
+                      <p className="text-sm font-semibold
+                        text-slate-200">
+
+                        {service.name}
+
+                      </p>
+
+                      <CheckCircle2 className="w-4 h-4
+                        text-amber-400 ml-auto" />
+
+                    </div>
+
+                  );
+
+                })}
+
+              </div>
+
+              {/* Owner */}
+              <div className="mt-9 p-5 rounded-2xl
+                bg-white/[0.04]
+                border border-amber-400/20">
+
+                <p className="text-[10px] font-bold
+                  uppercase tracking-[2px]
+                  text-slate-500">
+
+                  Your Event Partner
+
+                </p>
+
+                <div className="flex items-center
+                  justify-between gap-3 mt-2">
+
+                  <div>
+
+                    <h4 className="text-xl
+                      font-black text-white">
+
+                      Lucky Shriwas
+
+                    </h4>
+
+                    <p className="text-xs text-slate-400 mt-1">
+                      Indore, Madhya Pradesh
+                    </p>
+
+                  </div>
+
+                  <Sparkles className="w-8 h-8
+                    text-amber-400" />
+
+                </div>
+
               </div>
 
             </div>
-          </motion.div>
-        </section>
-        {/* --- FOOTER TAG --- */}
-        <div className="mt-20 md:mt-32 text-center">
-          <div className="w-full h-px bg-slate-100 mb-8 md:mb-10" />
-          <p className="text-slate-300 font-bold text-[8px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.6em] px-4">
-            SK PRIME GROUP PRIVATE LIMITED • © 2026
-          </p>
+
+          </div>
+
         </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 text-center
+          p-8 sm:p-10 rounded-3xl
+          border border-amber-400/20
+          bg-gradient-to-r from-[#151823]
+          via-[#1B1C27] to-[#151823]">
+
+          <h3 className="text-2xl sm:text-3xl
+            font-black uppercase">
+
+            Let's Create Something
+            <span className="text-amber-400">
+              {' '}Amazing.
+            </span>
+
+          </h3>
+
+          <p className="text-sm text-slate-400
+            mt-3 mb-7">
+
+            Make your next celebration an experience
+            worth remembering.
+
+          </p>
+
+          <a
+            href="tel:+917000389061"
+            className="inline-flex items-center
+            justify-center gap-2 px-8 py-4
+            rounded-xl bg-gradient-to-r
+            from-amber-300 to-yellow-500
+            text-black font-black text-xs
+            uppercase tracking-wider
+            hover:scale-105 transition-all"
+          >
+
+            <Phone className="w-4 h-4" />
+
+            Contact Lucky Shriwas
+
+            <ArrowUpRight className="w-4 h-4" />
+
+          </a>
+
+        </div>
+
       </div>
+
     </section>
   );
 };

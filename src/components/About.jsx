@@ -1,306 +1,439 @@
+
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
-  Target, Lightbulb, TrendingUp, ShieldCheck, Award,
-  Users, Globe, Rocket, Crown, ArrowRight, Linkedin, Mail, Cpu, Briefcase
+  Volume2,
+  Lightbulb,
+  ChevronRight,
+  Music2,
+  MonitorPlay,
+  PartyPopper,
+  MapPin,
+  Sparkles,
+  CheckCircle2,
+  Phone,
+  ArrowUpRight
 } from 'lucide-react';
 
-// --- SUB-COMPONENT: EXECUTIVE SECTION ---
-const ExecutiveSection = ({ name, role, vision, quote, image, isReversed, icon: Icon }) => (
-  /* Yaha mb-20 md:mb-40 ko kam karke mb-12 md:mb-20 kiya gaya hai */
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-12 md:mb-20">
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      className={`lg:col-span-5 ${isReversed ? 'lg:order-last' : 'lg:order-first'}`}
-    >
-      {/* Image container ki max-width thodi aur optimize ki hai */}
-      <div className="relative max-w-[240px] sm:max-w-[280px] md:max-w-[320px] mx-auto group">
-        <div className="absolute -inset-2 border border-slate-100 rounded-[2rem] rotate-3 group-hover:rotate-0 transition-transform duration-700"></div>
-        <div className="aspect-[4/5] rounded-[1.5rem] overflow-hidden shadow-xl relative z-10 border-2 border-white bg-slate-50">
-          <img src={image} alt={name} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
-        </div>
-        <div className={`absolute -bottom-3 ${isReversed ? '-left-3' : '-right-3'} bg-slate-900 p-3 rounded-lg shadow-lg z-20 group-hover:scale-110 transition-transform`}>
-          <Icon size={18} className="text-[#D4AF37]" />
-        </div>
-      </div>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      /* space-y-6 ko space-y-4 kiya hai vertical gap kam karne ke liye */
-      className={`lg:col-span-7 space-y-4 text-center lg:text-left ${isReversed ? 'lg:order-first' : 'lg:order-last'}`}
-    >
-      <div className="space-y-1">
-        <span className="text-[#D4AF37] font-black text-[9px] uppercase tracking-[0.3em] border-b-2 border-[#D4AF37]/10 pb-1 inline-block">
-          {role}
-        </span>
-        <h3 className="text-3xl sm:text-4xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter leading-[1.1] italic font-serif">
-          {name.split(' ')[0]} <br /><span className="text-[#D4AF37]">{name.split(' ').slice(1).join(' ')}</span>
-        </h3>
-      </div>
-
-      <p className="text-sm md:text-lg text-slate-500 font-light italic border-l-4 border-slate-100 pl-4 leading-snug max-w-2xl mx-auto lg:mx-0">
-        {vision}
-      </p>
-
-      {/* Padding p-8 ko p-5 kiya hai taaki box compact ho jaye */}
-      <div className="bg-white p-5 md:p-6 rounded-[1.5rem] shadow-sm border border-slate-50 relative overflow-hidden text-left">
-        <div className="absolute top-0 left-0 w-1 h-full bg-[#D4AF37]" />
-        <p className="text-slate-900 text-base md:text-xl font-black italic uppercase leading-tight tracking-tighter">
-          {quote}
-        </p>
-      </div>
-
-      <div className="flex justify-center lg:justify-start gap-3 pt-2">
-        <button className="p-2.5 bg-slate-900 text-white rounded-lg hover:bg-[#D4AF37] transition-all shadow-md group">
-          <Linkedin size={16} className="group-hover:rotate-12 transition-transform" />
-        </button>
-        <button className="p-2.5 bg-white text-slate-900 border border-slate-100 rounded-lg hover:border-[#D4AF37] transition-all shadow-sm group">
-          <Mail size={16} className="group-hover:-translate-y-1 transition-transform" />
-        </button>
-      </div>
-    </motion.div>
-  </div>
-);
-
 const About = () => {
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 1.05]);
 
-  const missionPoints = [
-    { title: "SK Prime Infotech", desc: "Architecting high-performance software and specialized tools like Restaurant POS and Smart Agriculture web apps.", icon: <Lightbulb className="w-6 h-6 md:w-8 md:h-8" /> },
-    { title: "SK Prime Sports", desc: "Formalizing regional sports talent through elite management and flagship leagues like KCPL Season 1.", icon: <TrendingUp className="w-6 h-6 md:w-8 md:h-8" /> },
-    { title: "SK Prime Events", desc: "Executing grand-scale corporate launches and sports events like the Shri Gaud Premier League 2026.", icon: <Rocket className="w-6 h-6 md:w-8 md:h-8" /> },
-    { title: "Verma Prime Properties and Construction", desc: "Building sustainable urban infrastructure and premium property solutions across Indore.", icon: <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" /> }
+  const services = [
+    {
+      icon: Volume2,
+      title: 'Professional Sound',
+      desc: 'Powerful and clear audio systems for every event.'
+    },
+    {
+      icon: Lightbulb,
+      title: 'DJ & Stage Lighting',
+      desc: 'Dynamic lighting and stunning visual effects.'
+    },
+    {
+      icon: MonitorPlay,
+      title: 'LED Screens',
+      desc: 'LED walls and big screen visual experiences.'
+    },
+    {
+      icon: PartyPopper,
+      title: 'Complete Events',
+      desc: 'Stage, decoration and complete event management.'
+    }
   ];
 
-  const coreValues = [
-    { title: "Excellence", desc: "Building a Legacy of Trust.", icon: <Award size={20} /> },
-    { title: "Innovation", desc: "Modernizing Unorganized Markets.", icon: <Target size={20} /> },
-    { title: "Empowerment", desc: "Learning-by-Doing Culture.", icon: <Users size={20} /> },
-    { title: "Legacy", desc: "Building Excellence, Defining Legacy.", icon: <Globe size={20} /> }
+  const highlights = [
+    'Professional Sound & Lighting Setup',
+    'Wedding & Corporate Event Solutions',
+    'Stage, LED Wall & Decoration',
+    'Complete Event Management'
   ];
 
   return (
-    <div className="bg-[#fcfcfd] min-h-screen text-slate-900 selection:bg-[#D4AF37] selection:text-white font-sans overflow-x-hidden pt-20 md:pt-22">
+    <section
+      id="about"
+      className="relative py-24 lg:py-32 bg-[#090B13]
+      text-white overflow-hidden"
+    >
 
-      {/* Background elements */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-50">
-        <div className="absolute top-[-5%] right-[-10%] w-[60%] h-[60%] bg-amber-50 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-5%] left-[-10%] w-[50%] h-[50%] bg-blue-50 blur-[120px] rounded-full" />
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+
+        <div className="absolute top-20 left-0 w-96 h-96
+          bg-amber-500/10 blur-[130px] rounded-full" />
+
+        <div className="absolute bottom-0 right-0 w-96 h-96
+          bg-purple-600/10 blur-[130px] rounded-full" />
+
+        <div className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 py-10">
+      <div className="relative z-10 max-w-7xl mx-auto
+        px-5 sm:px-8 lg:px-10">
 
-        {/* HERO SECTION */}
-        <section className="min-h-[30vh] flex flex-col justify-center items-center text-center mb-16 md:mb-10">
-          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} className="flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/80 backdrop-blur-md mb-8 shadow-sm">
-            <Crown size={14} className="text-[#D4AF37]" />
-            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-600">Established 2026 Vision</span>
-          </motion.div>
+        {/* Section Heading */}
+        <div className="text-center mb-16">
 
-          <motion.h1
-            // Combined both 'scale' and 'fontSize' into one style object
-            style={{
-              scale,
-              fontSize: "clamp(2.5rem, 10vw, 9rem)"
-            }}
-            className="font-black leading-[0.95] md:leading-[0.9] tracking-tighter mb-6 md:mb-10 uppercase text-slate-900 text-center lg:text-left"
-          >
-            <span className="block">THE GLOBAL</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#8A6E2F] via-[#D4AF37] to-[#8A6E2F] italic font-serif py-2">
-              CONGLOMERATE
+          <span className="inline-flex items-center gap-2
+            px-4 py-2 rounded-full
+            bg-amber-400/10 border border-amber-400/25
+            text-amber-300 text-xs font-bold
+            uppercase tracking-[2px] mb-5">
+
+            <Sparkles className="w-4 h-4" />
+            Get To Know Us
+
+          </span>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl
+            font-black uppercase leading-tight">
+
+            More Than Just Sound.
+            <span className="block mt-2 bg-gradient-to-r
+              from-amber-200 via-yellow-400 to-amber-500
+              bg-clip-text text-transparent">
+              We Create Experiences.
             </span>
-          </motion.h1>
 
-          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="max-w-2xl text-base md:text-xl text-slate-500 font-light leading-relaxed italic px-4">
-            <b>Building Excellence. Defining Legacy.</b> <br className="hidden sm:block" />
-            Modernizing unorganized markets through innovation, sports, and infrastructure.
-          </motion.p>
-        </section>
-        {/* --- THE ORIGIN STORY --- */}
-        <section className="py-5 md:py-10 bg-white/40 backdrop-blur-sm rounded-[3rem] border border-slate-100 mb-20 overflow-hidden relative">
-          <div className="max-w-5xl mx-auto px-6 text-center">
-            {/* Icon Badge */}
-            <div className="inline-block p-4 rounded-2xl bg-amber-50 text-[#D4AF37] mb-8 shadow-sm">
-              <Target size={28} />
-            </div>
+          </h2>
 
-            {/* Heading */}
-            <h2 className="text-3xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter mb-10 italic font-serif leading-none">
-              Our Vision: To <span className="text-[#D4AF37]">Empower</span> <br />
-              Every Talent, In Every Field.
-            </h2>
+          <p className="text-slate-400 mt-5 max-w-2xl
+            mx-auto text-sm sm:text-base leading-relaxed">
 
-            {/* Story Content */}
-            <div className="max-w-3xl mx-auto space-y-6">
-              <p className="text-slate-700 text-lg md:text-2xl leading-relaxed font-light italic">
-                "SK Prime Group was born from a singular, powerful mission: To bridge the gap between raw potential and professional excellence."
-              </p>
+            Bringing together sound, lighting and creativity
+            to make every celebration truly memorable.
 
-              <p className="text-slate-500 text-base md:text-lg leading-relaxed font-normal">
-                From the tech labs of <span className="text-slate-800 font-bold">Infotech</span> to the high-energy stadiums of <span className="text-slate-800 font-bold">KCPL Sports</span>,
-                our story is about people. We are dedicated to identifying hidden talents in unorganized sectors and providing them with
-                the corporate structure, technology, and platforms they need to dominate the global stage.
-                <span className="block mt-4 text-[#D4AF37] font-bold uppercase tracking-widest text-sm">
-                  We don't just build businesses; we build the people who lead them.
-                </span>
-              </p>
-            </div>
+          </p>
 
-            {/* Impact Timeline / Stats */}
+        </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-10 border-t border-slate-100">
-              {[
-                { label: "Vision Founded", val: "2026" },
-                { label: "Talent Ecosystem", val: "Multidisciplinary" },
-                { label: "Flagship Venture", val: "KCPL Sports" },
-                { label: "Global Tech", val: "Hisaab Kitaab" }
-              ].map((item, idx) => (
-                <div key={idx} className="p-4 group hover:bg-white transition-all rounded-2xl">
-                  <p className="text-[#D4AF37] font-black text-2xl mb-1 group-hover:scale-110 transition-transform inline-block">{item.val}</p>
-                  <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em] font-black">{item.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        {/* EXECUTIVE BOARD - Optimized & Compact */}
-        <section className="border-t border-slate-100">
-          {/* Header Section - Minimal Spacing */}
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-[10px] mb-2">Strategic Minds</h2>
-            <h3 className="text-3xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter italic font-serif leading-none">
-              The <span className="text-[#D4AF37]">Executive</span> Board.
-            </h3>
-          </div>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2
+          gap-12 lg:gap-16 items-center">
 
-          {/* Main Leaders */}
-          <div className="space-y-4 md:space-y-8">
-            <ExecutiveSection
-              name="Sarika Rakesh Verma"
-              role="The Chairman"
-              vision="Integrity and Excellence aren't just words; they are the bedrock of every brick we lay."
-              quote="Building a legacy of trust and quality."
-              image="/sarika.jpg"
-              icon={ShieldCheck}
-              isReversed={false}
-            />
+          {/* LEFT IMAGE */}
+          <div className="relative">
 
-            <ExecutiveSection
-              name="Harsh Verma"
-              role="Founder & CEO"
-              vision="Driving a Learning-by-Doing culture to bridge the gap between regional talent and global infrastructure."
-              quote="Innovation is our currency; Excellence is our standard."
-              image="/harsh.webp"
-              icon={Award}
-              isReversed={true}
-            />
-          </div>
+            <div className="absolute -inset-3 rounded-3xl
+              bg-gradient-to-br from-amber-400/20
+              via-purple-500/10 to-blue-500/20
+              blur-xl" />
 
-          {/* CONSULTANTS GRID - Compact Vertical Space */}
-          <div className="mt-12 border-t border-slate-50 pt-12">
-            <div className="text-center mb-8">
-              <h4 className="text-slate-400 font-bold uppercase tracking-[0.4em] text-[10px]">Technical & Business Council</h4>
-            </div>
+            <div className="relative rounded-3xl
+              overflow-hidden border border-amber-400/30
+              shadow-2xl shadow-black/50 group">
 
-            <div className="space-y-4 md:space-y-6">
-              <ExecutiveSection name="Swapnil Porwal" role="Senior Business Consultant & Lead" vision="Strategizing market penetration and sustainable business models." quote="Strategy is about making choices." image="/swapnil.jpg" icon={Briefcase} isReversed={false} />
-              <ExecutiveSection name="Avinash Kumar" role="Senior IT Consultant & Lead" vision="Defining the technological roadmap." quote="Code is the brush, cloud is the canvas." image="/avinash.webp" icon={Cpu} isReversed={true} />
-              <ExecutiveSection name="Aditya Singh" role="Technical Lead" vision="Engineering robust architectures." quote="We build experiences." image="/myphoto.jpg" icon={ShieldCheck} isReversed={false} />
-            </div>
-          </div>
-        </section>
+              <img
+                src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&q=85&w=1200"
+                alt="Professional live event production and stage lighting"
+                className="w-full h-[420px] sm:h-[540px]
+                object-cover group-hover:scale-105
+                transition-transform duration-1000"
+              />
 
-        {/* FOOTPRINT CARDS */}
-        <section className="py-10 md:py-10">
-          <div className="mb-16 text-center">
-            <h3 className="text-4xl md:text-7xl font-black text-slate-900 uppercase tracking-tighter">Core <span className="text-[#D4AF37] italic font-serif">Impact.</span></h3>
-          </div>
+              <div className="absolute inset-0
+                bg-gradient-to-t from-[#090B13]
+                via-[#090B13]/10 to-transparent" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {missionPoints.map((point, index) => (
-              <motion.div key={index} whileHover={{ y: -10 }} className="group bg-white border border-slate-100 p-8 md:p-10 rounded-[2.5rem] flex flex-col justify-between shadow-sm hover:shadow-2xl transition-all duration-500 relative">
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-amber-50 text-[#B8860B] flex items-center justify-center mb-8 group-hover:bg-[#D4AF37] group-hover:text-white transition-all">{point.icon}</div>
-                  <h3 className="text-lg font-bold uppercase mb-4 text-slate-900 tracking-tight">{point.title}</h3>
-                  <p className="text-slate-500 text-[13px] leading-relaxed">{point.desc}</p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-slate-50 flex items-center gap-2 text-[10px] font-black tracking-widest uppercase text-slate-400 group-hover:text-[#D4AF37] transition-colors">
-                  Discover <ArrowRight size={14} />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+              {/* Image Caption */}
+              <div className="absolute bottom-0 left-0
+                right-0 p-6 sm:p-8">
 
-        {/* COMBINED DNA & CTA SECTION */}
-        <section className="mb-12 md:mb-24 px-4 md:px-0">
-          <div className="bg-slate-900 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl relative">
-            {/* Decorative Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/10 rounded-full blur-[100px]" />
+                <div className="flex items-center gap-4
+                  p-4 rounded-2xl
+                  bg-[#10121C]/90 backdrop-blur-xl
+                  border border-amber-400/25">
 
-            <div className="p-8 md:p-16 lg:p-20">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                  <div className="w-12 h-12 rounded-xl
+                    bg-gradient-to-br from-amber-300
+                    to-yellow-600 flex items-center
+                    justify-center shrink-0">
 
-                {/* Left Side: DNA Heading */}
-                <div className="lg:col-span-4 text-center lg:text-left space-y-4">
-                  <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter italic font-serif text-white">
-                    Our <span className="text-[#D4AF37]">DNA.</span>
-                  </h3>
-                  <p className="text-slate-400 text-sm md:text-base italic font-light max-w-xs mx-auto lg:mx-0">
-                    Fundamental principles driving SK Prime Group's expansion and global footprint.
-                  </p>
+                    <Music2 className="w-6 h-6 text-black" />
+
+                  </div>
+
+                  <div>
+
+                    <h3 className="font-bold text-white
+                      text-sm sm:text-base">
+                      Every Event. Every Detail.
+                    </h3>
+
+                    <p className="text-xs text-slate-400 mt-1">
+                      Sound, Lights & Complete Event Solutions
+                    </p>
+
+                  </div>
+
                 </div>
 
-                {/* Right Side: Core Values Grid (Compact) */}
-                <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                  {coreValues.map((val, i) => (
-                    <div key={i} className="p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 group hover:bg-white/10 transition-all">
-                      <div className="w-10 h-10 shrink-0 rounded-lg bg-[#D4AF37] flex items-center justify-center text-slate-900 group-hover:scale-110 transition-transform">
-                        {val.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-bold uppercase text-xs text-white tracking-tight">{val.title}</h4>
-                        <p className="text-[8px] text-slate-400 font-bold uppercase tracking-widest">{val.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              {/* Divider */}
-              <div className="my-12 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              {/* Floating Location */}
+              <div className="absolute top-5 left-5
+                flex items-center gap-2 px-4 py-2
+                rounded-full bg-black/70
+                border border-amber-400/30
+                backdrop-blur-lg">
 
-              {/* Bottom CTA Area */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-center space-y-8"
-              >
-                <h2 className="text-3xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-none">
-                  BUILDING THE FUTURE <span className="text-[#D4AF37] italic font-serif">LEGACY.</span>
-                </h2>
+                <MapPin className="w-4 h-4 text-amber-400" />
 
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                  <button className="w-full sm:w-auto bg-[#D4AF37] text-slate-900 px-12 py-4 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white transition-all shadow-xl active:scale-95">
-                    Partner with us
-                  </button>
-                  <button className="w-full sm:w-auto border border-white/20 text-white px-12 py-4 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all">
-                    View Ventures
-                  </button>
-                </div>
-              </motion.div>
+                <span className="text-xs font-bold
+                  text-white tracking-wide">
+                  INDORE, MP
+                </span>
+
+              </div>
+
             </div>
+
           </div>
-        </section>
+
+          {/* RIGHT CONTENT */}
+          <div>
+
+            <span className="text-xs font-bold
+              uppercase tracking-[2px]
+              text-amber-400">
+              About Shree Ganesh Sound & Light
+            </span>
+
+            <h3 className="text-3xl sm:text-4xl
+              font-black uppercase leading-tight mt-4 mb-6">
+
+              Turning Your
+              <span className="block text-amber-400">
+                Vision Into Reality.
+              </span>
+
+            </h3>
+
+            <p className="text-slate-300 text-sm sm:text-base
+              leading-8 mb-5">
+
+              <strong className="text-white">
+                Shree Ganesh Sound & Light
+              </strong>
+              is your event production and management
+              partner in Indore. We help transform your
+              special occasions into extraordinary
+              experiences with professional sound systems,
+              stunning lighting and complete event setups.
+
+            </p>
+
+            <p className="text-slate-400 text-sm
+              leading-7 mb-7">
+
+              From weddings, birthday celebrations and
+              grand functions to corporate events and
+              live performances, we bring together
+              the right equipment, creative ideas and
+              event coordination to make your occasion
+              memorable.
+
+            </p>
+
+            {/* Owner Details */}
+            <div className="flex items-center gap-4
+              p-4 rounded-2xl bg-[#171A25]
+              border border-amber-400/20 mb-8">
+
+              <div className="w-14 h-14 rounded-xl
+                bg-gradient-to-br from-amber-300
+                to-yellow-600 flex items-center
+                justify-center shrink-0">
+
+                <span className="text-black text-xl
+                  font-black">
+                  LS
+                </span>
+
+              </div>
+
+              <div className="flex-1">
+
+                <p className="text-[10px] uppercase
+                  tracking-[2px] text-slate-500 font-bold">
+                  Your Event Partner
+                </p>
+
+                <h4 className="text-lg font-extrabold
+                  text-white mt-1">
+                  Lucky Shriwas
+                </h4>
+
+                <p className="text-xs text-slate-400">
+                  Shree Ganesh Sound & Light, Indore
+                </p>
+
+              </div>
+
+              <a
+                href="tel:+917000389061"
+                className="w-11 h-11 rounded-xl
+                bg-amber-400/10 border
+                border-amber-400/30
+                flex items-center justify-center
+                text-amber-400 hover:bg-amber-400
+                hover:text-black transition-all"
+                aria-label="Call Lucky Shriwas"
+              >
+
+                <Phone className="w-5 h-5" />
+
+              </a>
+
+            </div>
+
+            {/* Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-2
+              gap-x-5 gap-y-4 mb-9">
+
+              {highlights.map((item, index) => (
+
+                <div key={index}
+                  className="flex items-start gap-2">
+
+                  <CheckCircle2 className="w-4 h-4
+                    text-amber-400 shrink-0 mt-0.5" />
+
+                  <span className="text-xs sm:text-sm
+                    text-slate-300 font-medium">
+                    {item}
+                  </span>
+
+                </div>
+
+              ))}
+
+            </div>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-3">
+
+              <Link
+                to="/contact"
+                className="inline-flex items-center
+                justify-center gap-2 px-7 py-4
+                rounded-xl bg-gradient-to-r
+                from-amber-300 via-yellow-400
+                to-amber-500 text-black
+                font-extrabold text-xs uppercase
+                tracking-wider shadow-lg
+                shadow-amber-500/20
+                hover:scale-[1.03] transition-all"
+              >
+
+                Let's Plan Your Event
+
+                <ChevronRight className="w-4 h-4
+                  stroke-[3]" />
+
+              </Link>
+
+              <a
+                href="https://wa.me/917000389061?text=Hi%20Lucky%20Shriwas!%20I%20want%20to%20know%20more%20about%20your%20event%20services."
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center
+                justify-center gap-2 px-7 py-4
+                rounded-xl bg-white/[0.04]
+                border border-white/15
+                text-white font-bold text-xs
+                uppercase tracking-wider
+                hover:border-amber-400/50
+                hover:text-amber-300 transition-all"
+              >
+
+                Contact Us
+
+                <ArrowUpRight className="w-4 h-4" />
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* SERVICES CARDS */}
+        <div className="mt-24">
+
+          <div className="text-center mb-10">
+
+            <p className="text-xs font-bold uppercase
+              tracking-[3px] text-amber-400 mb-3">
+              What We Bring To Your Event
+            </p>
+
+            <h3 className="text-2xl sm:text-3xl
+              font-black uppercase text-white">
+              Our Expertise
+            </h3>
+
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2
+            lg:grid-cols-4 gap-5">
+
+            {services.map((service, index) => {
+
+              const Icon = service.icon;
+
+              return (
+
+                <div key={index}
+                  className="group p-6 rounded-2xl
+                  bg-[#141722] border border-white/10
+                  hover:border-amber-400/40
+                  hover:-translate-y-2
+                  transition-all duration-300">
+
+                  <div className="w-12 h-12 rounded-xl
+                    bg-amber-400/10 border
+                    border-amber-400/20
+                    flex items-center justify-center
+                    mb-5 group-hover:bg-amber-400
+                    transition-all">
+
+                    <Icon className="w-6 h-6
+                      text-amber-400
+                      group-hover:text-black
+                      transition-all" />
+
+                  </div>
+
+                  <h4 className="font-bold text-white
+                    text-base mb-2">
+                    {service.title}
+                  </h4>
+
+                  <p className="text-xs text-slate-400
+                    leading-6">
+                    {service.desc}
+                  </p>
+
+                </div>
+
+              );
+
+            })}
+
+          </div>
+
+        </div>
 
       </div>
-    </div>
+
+    </section>
   );
 };
 

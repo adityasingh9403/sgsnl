@@ -1,196 +1,236 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Mail, Phone, MapPin, Youtube, Twitter, ArrowUpRight, Crown } from 'lucide-react';
 
-const Logo = "/skprimegrouplogo.png";
+import React from 'react';
+import {
+  Volume2,
+  Instagram,
+  Facebook,
+  MessageCircle,
+  ArrowUpRight,
+  MapPin,
+  Phone,
+  Sparkles,
+} from 'lucide-react';
+
+import { generateWhatsAppLink } from '../data/websiteData';
 
 const Footer = () => {
-  // Social Links Data - Ek hi jagah maintain karne ke liye
-  const socialLinks = [
-    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/skprimegroup' },
-    { name: 'Linkedin', icon: Linkedin, url: 'https://www.linkedin.com/company/sk-prime-group-private-limited' },
-    { name: 'Twitter', icon: Twitter, url: 'https://x.com/skprimegroup' },
-    { name: 'Youtube', icon: Youtube, url: 'https://www.youtube.com/@skprimegroup' }
+  const currentYear = new Date().getFullYear();
+
+  // Add your actual social media URLs here.
+  const socialLinks = {
+    instagram: '', 
+    facebook: '',
+  };
+
+  const quickLinks = [
+    { label: 'About Us', href: '#about' },
+    { label: 'Our Services', href: '#services' },
+    { label: 'Events We Cover', href: '#events' },
+    { label: 'Why Choose Us', href: '#why-us' },
+    { label: 'Our Gallery', href: '#gallery' },
+    { label: 'Contact Us', href: '#contact' },
   ];
 
+  const serviceLinks = [
+    'Professional Sound Systems',
+    'DJ & Stage Lighting',
+    'LED Walls & Screens',
+    'Stage Setup & Decoration',
+    'Tent & Seating Arrangements',
+    'Complete Event Management',
+  ];
+
+  const whatsappLink = generateWhatsAppLink();
+
   return (
-    <footer className="bg-[#001233] text-white pt-10 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-[#08090D] border-t border-amber-500/20 text-gray-400">
 
-      {/* --- DESIGNER BORDERS --- */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
-      <div className="absolute top-[4px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"></div>
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/4 w-72 h-72 bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Background Decorative Element */}
-      <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-16 pb-8">
 
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-4">
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12">
 
-          {/* Section 1: The Legacy Identity */}
-          <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+          {/* Brand Information */}
+          <div className="lg:col-span-2">
 
-            <Link
-              to="/"
-              className="flex flex-col items-center lg:items-start gap-4 group"
-            >
-              {/* Logo Container - Margin auto handles mobile centering */}
-              <div className="relative w-24 h-24 mb-2 flex items-center justify-center">
-                <div className="absolute inset-0 border-2 border-[#D4AF37]/40 rotate-45 group-hover:rotate-90 transition-transform duration-700"></div>
-                {/* Agar Logo import kiya hai toh src={Logo} use karein, varna path "/verma_logo.png" */}
-                <img
-                  src={Logo}
-                  alt="SK Prime Group"
-                  className="relative h-14 w-14 object-contain"
-                />
+            <a href="#home" className="inline-flex items-center gap-3 mb-6 group">
+
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-300 via-yellow-500 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                <Volume2 className="w-6 h-6 text-black stroke-[2.5]" />
               </div>
 
-              {/* Text Section */}
-              <div className="flex flex-col items-center lg:items-start">
-                <span className="text-3xl font-serif font-bold tracking-tight text-white uppercase leading-none">
-                  SK <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#F9E29C] to-[#D4AF37]">PRIME</span>
+              <div>
+                <span className="text-xl sm:text-2xl font-black tracking-wider text-white block uppercase leading-none">
+                  SHREE GANESH
                 </span>
-                <span className="text-[9px] tracking-[0.5em] font-bold text-[#D4AF37] uppercase mt-2 italic">
-                  Building Excellence
+
+                <span className="text-[10px] sm:text-xs font-bold text-amber-400 tracking-[0.3em] block uppercase mt-1">
+                  SOUND & LIGHT
                 </span>
               </div>
-            </Link>
 
-            {/* Description Text */}
-            <p className="text-slate-400 text-sm leading-relaxed font-light italic max-w-xs md:max-w-sm lg:max-w-none">
-              A global conglomerate architecting the future through innovation, integrity, and a commitment to defining legacy.
+            </a>
+
+            <p className="text-sm text-gray-400 leading-7 max-w-md mb-6">
+              Your event, our passion. We provide sound systems, DJ and stage
+              lighting, LED screens, stage arrangements and complete event
+              management solutions to make every celebration special.
             </p>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+
+              {socialLinks.instagram && (
+                <a
+                  href={socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300"
+                >
+                  <Instagram size={18} />
+                </a>
+              )}
+
+              {socialLinks.facebook && (
+                <a
+                  href={socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300"
+                >
+                  <Facebook size={18} />
+                </a>
+              )}
+
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300"
+              >
+                <MessageCircle size={18} />
+              </a>
+
+            </div>
 
           </div>
 
-          {/* Section 2: Navigation Links */}
-          <div className="lg:pl-10 flex flex-col items-center lg:items-start w-full">
-
-            {/* Header - Centered on mobile/tablet, Left on Laptop */}
-            <h4 className="text-[#D4AF37] text-[10px] font-black uppercase tracking-[0.5em] mb-10 border-b border-[#D4AF37]/20 pb-4 flex items-center justify-center lg:justify-start gap-2 w-full max-w-[200px] lg:max-w-none">
-              <Crown size={12} /> Navigation
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-[0.15em] text-xs mb-6">
+              Quick Links
             </h4>
 
-            {/* List - Center aligned items on mobile */}
-            <ul className="grid grid-cols-1 gap-4 w-full">
-              {['Home', 'About Us', 'Ventures', 'Gallery', 'Academy', 'Contact'].map((item) => (
-                <li key={item} className="flex justify-center lg:justify-start">
-                  <Link
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '')}`}
-                    className="text-slate-300 hover:text-[#D4AF37] text-xs font-bold transition-all duration-300 flex items-center group gap-3 uppercase tracking-widest"
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="group inline-flex items-center gap-2 text-sm text-gray-400 hover:text-amber-400 transition-colors"
                   >
-                    {/* Dot - Hidden on mobile if you want perfect center, or kept for style */}
-                    <div className="w-1 h-1 bg-[#D4AF37] rounded-full opacity-0 group-hover:opacity-100 transition-all"></div>
-
-                    {item}
-
-                    {/* Optional: Dot on the other side for symmetry in mobile center */}
-                    <div className="w-1 h-1 bg-[#D4AF37] rounded-full opacity-0 group-hover:opacity-100 transition-all lg:hidden"></div>
-                  </Link>
+                    <span className="w-1 h-1 rounded-full bg-amber-500/50 group-hover:bg-amber-400 transition-colors" />
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Section 3: Headquarters */}
-          <div className="flex flex-col items-center lg:items-start w-full">
-            {/* Header - Centered on mobile/tablet, Left on Laptop */}
-            <h4 className="text-[#D4AF37] text-[10px] font-black uppercase tracking-[0.5em] mb-10 border-b border-[#D4AF37]/20 pb-4 w-full text-center lg:text-left">
-              Headquarters
+          {/* Services */}
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-[0.15em] text-xs mb-6">
+              Our Services
             </h4>
 
-            <div className="space-y-8 text-xs text-slate-300 tracking-wide font-medium w-full flex flex-col items-center lg:items-start">
+            <ul className="space-y-3">
+              {serviceLinks.map((service) => (
+                <li key={service}>
+                  <a
+                    href="#services"
+                    className="group inline-flex items-start gap-2 text-sm text-gray-400 hover:text-amber-400 transition-colors"
+                  >
+                    <span className="text-amber-500 mt-0.5">✦</span>
+                    <span>{service}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Address Item */}
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 group text-center lg:text-left">
-                <MapPin size={18} className="text-[#D4AF37] shrink-0" />
-                <p className="leading-relaxed group-hover:text-white transition-colors uppercase italic">
-                  Office No. 1, SR Empire, Silver Star City, <br /> Rau, Indore, MP - 452012
-                </p>
+        </div>
+
+        {/* Contact Highlight */}
+        <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-r from-[#17130B] via-[#111217] to-[#17130B] p-5 sm:p-6 mb-10">
+
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+
+            <div>
+              <div className="flex items-center gap-2 text-amber-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-2">
+                <Sparkles size={13} />
+                Let's Plan Your Event
               </div>
 
-              {/* Phone Link - Mobile pe border niche (Bottom) laptop pe side mein (Left) */}
-              <a
-                href="tel:+918878740101"
-                className="flex flex-col lg:flex-row items-center lg:items-start gap-4 group border-b-2 lg:border-b-0 lg:border-l-2 border-[#D4AF37]/20 pb-2 lg:pb-0 lg:pl-4 hover:border-[#D4AF37] transition-all text-center lg:text-left w-fit"
-              >
-                <div className="flex flex-col">
-                  <span className="text-[8px] text-[#D4AF37] mb-1">CALL OFFICIAL</span>
-                  <span className="group-hover:text-white transition-colors tracking-widest">+91 88787 40101</span>
-                </div>
-              </a>
+              <h3 className="text-lg sm:text-xl font-bold text-white">
+                Have an upcoming celebration?
+              </h3>
 
-              {/* Email Link */}
-              <a
-                href="mailto:contact@skprimegroup.in"
-                className="flex flex-col lg:flex-row items-center lg:items-start gap-4 group border-b-2 lg:border-b-0 lg:border-l-2 border-[#D4AF37]/20 pb-2 lg:pb-0 lg:pl-4 hover:border-[#D4AF37] transition-all text-center lg:text-left w-fit"
-              >
-                <div className="flex flex-col">
-                  <span className="text-[8px] text-[#D4AF37] mb-1">EMAIL INQUIRY</span>
-                  <span className="group-hover:text-white transition-colors lowercase">contact@skprimegroup.in</span>
-                </div>
-              </a>
-
-            </div>
-          </div>
-
-          {/* Section 4: Social Identity - Fully Responsive */}
-          <div className="flex flex-col items-center lg:items-end w-full">
-            {/* Header - Center on mobile, Right on Laptop */}
-            <h4 className="text-[#D4AF37] text-[10px] font-black uppercase tracking-[0.5em] mb-10 border-b border-[#D4AF37]/20 pb-4 w-full text-center lg:text-right">
-              Social Connect
-            </h4>
-
-            {/* Icons Grid - Center on mobile, End on Laptop */}
-            <div className="flex justify-center lg:justify-end gap-3 mb-10 w-full">
-              {socialLinks.map((item, i) => (
-                <a
-                  key={i}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center border border-[#D4AF37]/30 hover:bg-[#D4AF37] hover:text-[#0f172a] text-[#D4AF37] transition-all duration-500 rounded-sm bg-[#D4AF37]/5"
-                >
-                  <item.icon size={20} />
-                </a>
-              ))}
-            </div>
-
-            {/* Global Presence Box - Centered text on mobile */}
-            <div className="inline-block p-6 border border-[#D4AF37]/10 bg-[#D4AF37]/5 text-center lg:text-right w-full lg:w-auto">
-              <p className="text-[9px] text-[#D4AF37] font-black tracking-[0.3em] uppercase mb-2">
-                Global Presence
-              </p>
-              <p className="text-white text-sm font-serif italic tracking-widest font-bold uppercase">
-                Indore
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                Connect with us to discuss your event requirements.
               </p>
             </div>
-          </div>
-        </div>
 
-        {/* Bottom Legal Section - Fully Responsive */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
+            <div className="flex flex-col sm:flex-row gap-3">
 
-          {/* Copyright Info - Centered on Mobile */}
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <div className="hidden sm:block h-[1px] w-8 bg-[#D4AF37]/40"></div>
-            <p className="text-[9px] font-bold tracking-[0.3em] text-slate-500 uppercase text-center">
-              © 2026 SK PRIME GROUP PRIVATE LIMITED.
-            </p>
-          </div>
-
-          {/* Legal Links - Center on mobile, Right on Desktop */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-[9px] font-black tracking-[0.3em] text-slate-500 uppercase px-4">
-            {['Privacy Policy', 'Terms of Service', 'Legal'].map((legal) => (
-              <span
-                key={legal}
-                className="hover:text-[#D4AF37] cursor-pointer transition-colors relative group whitespace-nowrap"
+              <a
+                href="tel:+917000389061"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-amber-500/30 text-amber-300 text-sm font-semibold hover:bg-amber-400 hover:text-black transition-all"
               >
-                {legal}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all"></span>
-              </span>
-            ))}
+                <Phone size={16} />
+                +91 7000389061
+              </a>
+
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-300 to-yellow-600 text-black text-sm font-bold hover:shadow-lg hover:shadow-amber-500/20 transition-all"
+              >
+                WhatsApp Us
+                <ArrowUpRight size={16} />
+              </a>
+
+            </div>
+
           </div>
+
         </div>
+
+        {/* Location */}
+        <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mb-8">
+          <MapPin size={15} className="text-amber-500" />
+          <span>Indore, Madhya Pradesh, India</span>
+        </div>
+
+        {/* Copyright */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+
+          <p className="text-[11px] text-gray-500">
+            © {currentYear} Shree Ganesh Sound & Light. All Rights Reserved.
+          </p>
+
+          <p className="text-[11px] text-gray-500">
+            Crafted for Memorable Events.
+          </p>
+
+        </div>
+
       </div>
     </footer>
   );
